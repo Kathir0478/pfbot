@@ -1,0 +1,242 @@
+{
+    "personal_info": {
+        "full_name": "Kathiravan",
+        "nickname": "Kathir",
+        "birthplace": "Chidambaram, Tamil Nadu, India",
+        "raised_in": "Chennai, Tamil Nadu, India",
+        "languages": [
+            "Tamil (native)",
+            "English"
+        ],
+        "hobbies": [
+            "Traveling",
+            "Exploring new things",
+            "Learning new technologies"
+        ],
+        "traits": [
+            "Adaptive",
+            "Quick learner",
+            "Team leader",
+            "Mentor",
+            "Problem solver"
+        ]
+    },
+    "career_goals": {
+        "main_goal": "Land a job that enables continuous learning, exploration, and growth in technology",
+        "secondary_goals": [
+            "Become a technical expert whose experience and knowledge make him irreplaceable by AI",
+            "Build a balanced professional and social life"
+        ],
+        "belief": "Coding is about thinking — if you can think correctly, you can learn any tech out there",
+        "inspiration": "Passion for technology, curiosity, and problem-solving"
+    },
+    "skills": {
+        "programming_languages": [
+            "Python",
+            "Java",
+            "JavaScript",
+            "TypeScript",
+            "SQL",
+            "MongoDB"
+        ],
+        "web_technologies": [
+            "HTML",
+            "CSS",
+            "React",
+            "Tailwind CSS",
+            "Node.js",
+            "Express.js",
+            "Framer Motion"
+        ],
+        "ai_ml_tools": [
+            "TensorFlow",
+            "PyTorch",
+            "LangChain",
+            "Gemini API",
+            "OpenAI API",
+            "LLMs"
+        ],
+        "devops_tools": [
+            "Render",
+            "Docker",
+            "Git & GitHub"
+        ],
+        "core_concepts": [
+            "Data Structures & Algorithms",
+            "Object-Oriented Programming",
+            "Operating Systems",
+            "Computer Networking",
+            "Database Manipulation"
+        ],
+        "strengths": [
+            "Problem-solving",
+            "Full-stack development",
+            "AI research",
+            "End-to-end project building"
+        ]
+    },
+    "education": [
+        {
+            "degree": "Higher Secondary Grade",
+            "school": "Montfort Matriculation Higher Secondary School",
+            "period": "2008 - 2022",
+            "gpa": "87%",
+            "description": "Focused on physics and mathematics, building a strong foundation in scientific reasoning and analytical thinking. Actively engaged in experiments, lab work, and problem-solving activities to strengthen conceptual understanding."
+        },
+        {
+            "degree": "B.Tech Artificial Intelligence and Data Science",
+            "school": "St. Joseph's Institute of Technology",
+            "period": "2022 - 2026",
+            "gpa": "8.65/10.0",
+            "description": "Gained in-depth knowledge of AI, machine learning, deep learning. Developed practical skills through hands-on projects and internships, specializing in full-stack development and data-driven solutions."
+        }
+    ],
+    "certifications": [
+        "CISCO Python Certified",
+        "Google Certified Problem Solving Skills",
+        "Coursera Machine Learning Certificate"
+    ],
+    "experience": [
+        {
+            "role": "AI Research Intern",
+            "company": "Blubridge",
+            "period": "29.05.2025 - 29.06.2025",
+            "description": "Worked on building an LLM like GPT from scratch. Learned DDP, UDA, and advanced architectures. Gained experience in reading and implementing complex AI documentation and architectures."
+        }
+    ],
+    "journey_timeline": [
+        "Started tech career with zero prior knowledge",
+        "Learned Python as first programming language within 1 month",
+        "Explored data science and classic ML algorithms",
+        "Dived into DSA and version control (Git)",
+        "Learned Java for deeper DSA practice",
+        "Transitioned to full-stack development (HTML, CSS, JS)",
+        "Built a complete web project independently within 1 month",
+        "Learned deployment using Render and Docker",
+        "Practiced DSA regularly and became proficient",
+        "Explored AI and deep learning while continuing web development",
+        "Developed end-to-end applications combining AI and web",
+        "Worked as AI researcher focusing on modern LLMs and AI tools",
+        "Explored and experimented with all modern AI tools available in the market"
+    ],
+    "teamwork_and_leadership": {
+        "skills": [
+            "Led multiple group projects successfully",
+            "Mentored junior students in technical growth",
+            "Collects multiple points of view and aligns team understanding",
+            "Assigns tasks based on strengths and weaknesses",
+            "Encourages peers to step out of comfort zones",
+            "Highly adaptable to new challenges"
+        ]
+    },
+    "projects": [
+        {
+            "title": "AI-Powered YouTube Filtering Extension",
+            "timeline": "6",
+            "description": "A Chrome extension that filters and recommends YouTube videos based on user-defined prompts and session times.",
+            "detailed_description": "Leverages NLP and ML to analyze video metadata (titles, descriptions, captions, comments). Users can define prompts and session-based filters while keeping recommendations neutral. Real-time API handling and dynamic DOM injection ensure seamless UX.",
+            "technologies": [
+                "JavaScript",
+                "Tailwind CSS",
+                "NLP",
+                "Machine Learning",
+                "Chrome Extension",
+                "LangChain"
+            ],
+            "github": "https://github.com/Kathir0478/extension"
+        },
+        {
+            "title": "Website Emotion and Vulnerability Analyzer",
+            "timeline": "2",
+            "description": "An NLP-powered tool analyzing websites for emotional tone, semantic context, and security risks.",
+            "technologies": [
+                "Python",
+                "NLP",
+                "Heuristic Analysis",
+                "Web Scraping"
+            ]
+        },
+        {
+            "title": "Corpus-Based Enterprise Chatbot Generator",
+            "timeline": "3",
+            "description": "Low-code platform to generate domain-specific chatbots for small businesses using AI and NLP.",
+            "technologies": [
+                "Python",
+                "LangChain",
+                "OpenAI GPT-3.5",
+                "FAISS",
+                "NLP",
+                "FastAPI",
+                "Node.js",
+                "React",
+                "Tailwind CSS",
+                "MongoDB",
+                "Express.js"
+            ],
+            "github": "https://github.com/Kathir0478/corpus-chatbot"
+        },
+        {
+            "title": "Review Classification and AI Summarizer for E-Commerce",
+            "timeline": "4",
+            "description": "Processes user reviews for sentiment, spam detection, and summary using Gemini Pro API.",
+            "technologies": [
+                "Python",
+                "NLP",
+                "Gemini Pro API",
+                "Machine Learning"
+            ],
+            "github": "https://github.com/Kathir0478/walmart"
+        },
+        {
+            "title": "Home Fitness Tracker and Recommendation Web App",
+            "timeline": "5",
+            "description": "Personalized web app to track workouts, monitor progress, and get fitness recommendations.",
+            "technologies": [
+                "React",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "APIs",
+                "LangChain",
+                "FAISS",
+                "Gemini API",
+                "Tailwind CSS",
+                "Framer Motion"
+            ],
+            "github": "https://github.com/Kathir0478/homefitness"
+        },
+        {
+            "title": "Entrepreneurial Recommendation Platform",
+            "timeline": "1",
+            "description": "ML-powered platform to match entrepreneurs based on profiles, skills, and goals.",
+            "technologies": [
+                "Python",
+                "Flask",
+                "Machine Learning",
+                "Node.js",
+                "React",
+                "Tailwind CSS",
+                "MongoDB",
+                "Express.js"
+            ],
+            "github": "https://github.com/Kathir0478/smart-networking-engine"
+        },
+        {
+            "title": "Recruitment Analytics Platform",
+            "timeline": "7",
+            "description": "Data-driven recruitment system automating candidate evaluation using AI and vector search.",
+            "technologies": [
+                "Python",
+                "Flask",
+                "Qdrant",
+                "REST APIs",
+                "Node.js",
+                "React",
+                "Tailwind CSS",
+                "MongoDB",
+                "Express.js"
+            ],
+            "github": "https://github.com/Kathir0478/hiracle"
+        }
+    ]
+}
