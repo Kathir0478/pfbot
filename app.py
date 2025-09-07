@@ -13,7 +13,8 @@ import json
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins="*")  # allow cross-origin requests
+CORS(app, origins=["http://localhost:3000", "https://pfbot-hf7x.onrender.com"])
+# CORS(app, origins="*")  # allow cross-origin requests
 
 # --- Load fixed JSON at startup ---
 vectorstore = None
