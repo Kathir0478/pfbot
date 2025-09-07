@@ -13,7 +13,7 @@ import json
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # allow cross-origin requests
+CORS(app, origins="*")  # allow cross-origin requests
 
 # --- Load fixed JSON at startup ---
 vectorstore = None
@@ -57,18 +57,6 @@ try:
 
 except Exception as e:
     print("Error loading JSON or building vectorstore:", e)
-
-# --- Prompt Template ---
-# TEMPLATE = """
-# You are a helpful assistant that answers questions based on a fixed portfolio JSON.
-# Answer ONLY using information from the portfolio.
-# If the user asks something not in the portfolio, politely respond that you don't know.
-
-# User's question:
-# {question}
-
-# Your response:
-# """
 
 TEMPLATE = """
 You are a knowledgeable assistant representing Kathiravan's professional portfolio. 
