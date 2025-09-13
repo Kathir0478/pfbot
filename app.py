@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-# from flask_cors import CORS
+from flask_cors import CORS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
@@ -13,7 +13,7 @@ import json
 load_dotenv()
 
 app = Flask(__name__)
-# CORS(app)
+CORS(app)
 # CORS(app, origins="*")  # allow cross-origin requests
 
 # --- Load fixed JSON at startup ---
