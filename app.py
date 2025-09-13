@@ -34,7 +34,7 @@ try:
 
     # Embeddings
     embedding = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
+        model="gemini-embedding-001",
         google_api_key=os.getenv("GOOGLE_API_KEY")
     )
 
@@ -91,7 +91,6 @@ def chat():
     try:
         formatted_prompt = prompt.format(question=question)
         result = qa_chain({"query": formatted_prompt})
-        print(result)
         return jsonify({"response": result["result"]})
 
     except Exception as e:
