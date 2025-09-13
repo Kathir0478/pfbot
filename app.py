@@ -14,7 +14,6 @@ load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
-# CORS(app, origins="*")  # allow cross-origin requests
 
 # --- Load fixed JSON at startup ---
 vectorstore = None
@@ -98,4 +97,5 @@ def chat():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.getenv("PORT", 5000))  # Render gives you PORT automatically
+    app.run(host="0.0.0.0", port=port, debug=False)
