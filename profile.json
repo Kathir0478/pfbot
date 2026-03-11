@@ -4,6 +4,7 @@
         "nickname": "Kathir",
         "birthplace": "Chidambaram, Tamil Nadu, India",
         "raised_in": "Chennai, Tamil Nadu, India",
+        "location": "Chennai, Tamil Nadu, India",
         "languages": [
             "Tamil (native)",
             "English"
@@ -11,7 +12,9 @@
         "hobbies": [
             "Traveling",
             "Exploring new things",
-            "Learning new technologies"
+            "Learning new technologies",
+            "Badminton",
+            "Exploring cutting-edge AI research"
         ],
         "traits": [
             "Adaptive",
@@ -19,6 +22,32 @@
             "Team leader",
             "Mentor",
             "Problem solver"
+        ],
+        "tagline": "Aspiring Software Developer",
+        "short_bio": "From developing full-stack applications to experimenting with large language models, I enjoy transforming ideas into real-world solutions. With hands-on experience in AI research, problem-solving, and innovative projects, my goal is to grow as a developer and create technology that makes a difference.",
+        "about_paragraphs": [
+            "I'm a dedicated student with a passion for problem-solving and creating meaningful digital experiences. My journey in technology began in high school, and I've been fascinated by the endless possibilities of code ever since.",
+            "Beyond technical expertise, I'm a dedicated problem-solver with strong teamwork, leadership, and critical thinking abilities. I actively participate in hackathons, coding competitions, and personal projects to continuously push my boundaries.",
+            "Outside of coding, I maintain creativity and focus through badminton, travel, and exploring cutting-edge AI research, turning ideas from paper into practical solutions."
+        ],
+        "links": {
+            "github": "https://github.com/Kathir0478",
+            "linkedin": "https://www.linkedin.com/in/kathiravan-b-980b00313/",
+            "email": "mailto:kathir200420@gmail.com"
+        },
+        "stats": {
+            "projects_completed": "10+",
+            "hackathons": "7+"
+        },
+        "academic_interests": [
+            "Machine Learning",
+            "Web Development",
+            "Data Science",
+            "Data Structures and Algorithms",
+            "GenAI Developer",
+            "AI Researcher",
+            "Deep Learning and LLM",
+            "Backend Developer"
         ]
     },
     "career_goals": {
@@ -43,6 +72,7 @@
             "HTML",
             "CSS",
             "React",
+            "Next.js",
             "Tailwind CSS",
             "Node.js",
             "Express.js",
@@ -59,7 +89,13 @@
         "devops_tools": [
             "Render",
             "Docker",
-            "Git & GitHub"
+            "Git & GitHub",
+            "Vercel"
+        ],
+        "databases": [
+            "MongoDB",
+            "MySQL",
+            "SQL"
         ],
         "core_concepts": [
             "Data Structures & Algorithms",
@@ -73,6 +109,44 @@
             "Full-stack development",
             "AI research",
             "End-to-end project building"
+        ],
+        "skill_categories": [
+            "Core CS Fundamentals",
+            "Programming Languages",
+            "Web Technologies",
+            "Databases",
+            "Tools & DevOps",
+            "AI & Machine Learning"
+        ],
+        "soft_skills": [
+            {
+                "name": "Problem Solving",
+                "description": "Breaking down complex problems into manageable solutions"
+            },
+            {
+                "name": "Team Collaboration",
+                "description": "Working effectively in diverse, cross-functional teams"
+            },
+            {
+                "name": "Communication",
+                "description": "Clear technical communication with stakeholders"
+            },
+            {
+                "name": "Project Management",
+                "description": "Agile methodologies, sprint planning, task prioritization"
+            },
+            {
+                "name": "Critical Thinking",
+                "description": "Analytical approach to decision-making and problem-solving"
+            },
+            {
+                "name": "Adaptability",
+                "description": "Quick learning and adaptation to new technologies"
+            },
+            {
+                "name": "Leadership",
+                "description": "Mentoring junior developers, leading technical initiatives"
+            }
         ]
     },
     "education": [
@@ -99,9 +173,27 @@
     "experience": [
         {
             "role": "AI Research Intern",
-            "company": "Blubridge",
-            "period": "29.05.2025 - 29.06.2025",
-            "description": "Worked on building an LLM like GPT from scratch. Learned DDP, UDA, and advanced architectures. Gained experience in reading and implementing complex AI documentation and architectures."
+            "company": "BluBridge",
+            "period": "28.06.2025 - 28.07.2025",
+            "description": "Gained in-depth exposure to Large Language Models (LLMs) covering architecture, tokenization, attention mechanisms, and fine-tuning strategies. Led development of a custom LLM from dataset preparation through training, evaluation, and deployment while exploring transformer interpretability methods.",
+            "highlights": [
+                "In-depth exposure to LLM architecture, tokenization, attention, and fine-tuning",
+                "Worked with Distributed Data Parallel (DDP) and multi-GPU training pipelines",
+                "Led development of a custom LLM model from scratch (data, training, eval, deployment)",
+                "Explored transformer interpretability with embedding visualizations and attention heatmaps"
+            ]
+        },
+        {
+            "role": "SDE Intern",
+            "company": "RocketLane",
+            "period": "03.12.2025 - 05.03.2026",
+            "description": "Designed and deployed a multi-language AI transcription pipeline and built backend infrastructure for meeting video playback and transcripts. Improved system reliability, observability, and delivered multiple production features and integrations.",
+            "highlights": [
+                "Built multi-language AI transcription pipeline using WhisperX; containerized and deployed on AWS SageMaker",
+                "Implemented backend for video playback UI, standardized storage, signed URLs, and caption sync",
+                "Stabilized Zoom Meeting SDK recordings, fixed bot lifecycle bugs, added configurable Datadog monitoring",
+                "Delivered GDPR acknowledgement, calendar rescheduling fixes, and MCP server POC for Chargebee integration"
+            ]
         }
     ],
     "journey_timeline": [
@@ -131,10 +223,11 @@
     },
     "projects": [
         {
+            "id": 1,
             "title": "AI-Powered YouTube Filtering Extension",
             "timeline": "6",
             "description": "A Chrome extension that filters and recommends YouTube videos based on user-defined prompts and session times.",
-            "detailed_description": "Leverages NLP and ML to analyze video metadata (titles, descriptions, captions, comments). Users can define prompts and session-based filters while keeping recommendations neutral. Real-time API handling and dynamic DOM injection ensure seamless UX.",
+            "detailed_description": "This Chrome extension leverages NLP and machine learning to semantically analyze video metadata including titles, descriptions, captions, and comments. Users can define prompts and time-based sessions to filter or highlight videos while ensuring the recommendation system remains neutral. Real-time API handling, dynamic DOM injection, and session tracking enable seamless user experience.",
             "technologies": [
                 "JavaScript",
                 "Tailwind CSS",
@@ -143,23 +236,47 @@
                 "Chrome Extension",
                 "LangChain"
             ],
-            "github": "https://github.com/Kathir0478/extension"
+            "github": "https://github.com/Kathir0478/extension",
+            "image": "/projects/youtube-filtering.jpg",
+            "features": [
+                "User-defined video filtering",
+                "Session-based recommendations",
+                "NLP-based semantic analysis",
+                "Dynamic UI injection",
+                "Gamified and self-focussing sessions"
+            ],
+            "challenges": "Ensuring real-time DOM updates and filtering without disrupting YouTube's native recommendation system",
+            "outcome": "Improved user control over video consumption and enhanced personalized experience"
         },
         {
+            "id": 2,
             "title": "Website Emotion and Vulnerability Analyzer",
             "timeline": "2",
-            "description": "An NLP-powered tool analyzing websites for emotional tone, semantic context, and security risks.",
+            "description": "An NLP-powered tool that analyzes websites to detect emotional tone, semantic context, and potential security risks.",
+            "detailed_description": "This tool processes website URLs to evaluate content for emotional tone, semantic meaning, and potential vulnerabilities. It acts as a pre-access evaluator to help users assess website trustworthiness. Using NLP pipelines and heuristic-based engines, the system predicts emotions, detects risks, and provides actionable insights.",
             "technologies": [
                 "Python",
                 "NLP",
                 "Heuristic Analysis",
                 "Web Scraping"
-            ]
+            ],
+            "github": "#",
+            "features": [
+                "Emotion analysis",
+                "Semantic context extraction",
+                "Vulnerability detection",
+                "Trustworthiness scoring",
+                "Pre-access evaluation"
+            ],
+            "challenges": "Designing accurate heuristics and NLP pipelines to analyze diverse web content reliably",
+            "outcome": "Enabled safer browsing and informed decision-making for users"
         },
         {
+            "id": 3,
             "title": "Corpus-Based Enterprise Chatbot Generator",
             "timeline": "3",
-            "description": "Low-code platform to generate domain-specific chatbots for small businesses using AI and NLP.",
+            "description": "A low-code platform that generates domain-specific chatbots for small businesses using AI and NLP.",
+            "detailed_description": "This platform simplifies chatbot creation for small businesses by ingesting PDFs and building knowledge bases. It leverages LangChain, FAISS vector stores, and OpenAI GPT-3.5-turbo for generating responsive chatbots capable of handling customer support and internal queries. Users can create chatbots without coding knowledge.",
             "technologies": [
                 "Python",
                 "LangChain",
@@ -173,24 +290,48 @@
                 "MongoDB",
                 "Express.js"
             ],
-            "github": "https://github.com/Kathir0478/corpus-chatbot"
+            "github": "https://github.com/Kathir0478/corpus-chatbot",
+            "image": "/projects/corpus-chatbot.jpg",
+            "features": [
+                "PDF ingestion",
+                "Knowledge base creation",
+                "Domain-specific chatbot generation",
+                "Low-code interface",
+                "Automatic updates"
+            ],
+            "challenges": "Ensuring accurate response generation and managing knowledge base embeddings efficiently",
+            "outcome": "Reduced setup complexity for non-technical users and improved internal support workflows"
         },
         {
+            "id": 4,
             "title": "Review Classification and AI Summarizer for E-Commerce",
             "timeline": "4",
             "description": "Processes user reviews for sentiment, spam detection, and summary using Gemini Pro API.",
+            "detailed_description": "This project processes user reviews using NLP pipelines to detect spam, classify emotion and polarity, and generate concise summaries. The integration of Gemini Pro API allows for accurate summarization of product feedback. The system enhances review browsing efficiency and provides analytics for product improvement and sentiment tracking.",
             "technologies": [
                 "Python",
                 "NLP",
                 "Gemini Pro API",
                 "Machine Learning"
             ],
-            "github": "https://github.com/Kathir0478/walmart"
+            "github": "https://github.com/Kathir0478/walmart",
+            "image": "/projects/ecom-commenter.jpg",
+            "features": [
+                "Sentiment analysis",
+                "Spam detection",
+                "Review summarization",
+                "Emotion & polarity classification",
+                "Insight extraction"
+            ],
+            "challenges": "Processing large volumes of reviews and generating accurate, concise summaries",
+            "outcome": "Enhanced review readability and provided actionable insights for businesses"
         },
         {
+            "id": 5,
             "title": "Home Fitness Tracker and Recommendation Web App",
             "timeline": "5",
             "description": "Personalized web app to track workouts, monitor progress, and get fitness recommendations.",
+            "detailed_description": "This full-stack platform allows users to log workouts, set goals, and monitor daily activity. Built with React, Node.js, Express, and MongoDB, it integrates third-party APIs for exercise datasets and instructional videos. Users receive personalized fitness plans based on performance analytics.",
             "technologies": [
                 "React",
                 "Node.js",
@@ -203,12 +344,24 @@
                 "Tailwind CSS",
                 "Framer Motion"
             ],
-            "github": "https://github.com/Kathir0478/homefitness"
+            "github": "https://github.com/Kathir0478/homefitness",
+            "image": "/projects/home-fitness.jpg",
+            "features": [
+                "Workout logging",
+                "Personalized recommendations",
+                "Progress tracking",
+                "Performance analytics",
+                "Integration with exercise APIs"
+            ],
+            "challenges": "Designing adaptive recommendation algorithms and integrating multiple APIs",
+            "outcome": "Enabled users to achieve fitness goals with personalized guidance"
         },
         {
+            "id": 6,
             "title": "Entrepreneurial Recommendation Platform",
             "timeline": "1",
             "description": "ML-powered platform to match entrepreneurs based on profiles, skills, and goals.",
+            "detailed_description": "This platform uses embedding generation, similarity scoring, and NLP semantic analysis to recommend collaborations between entrepreneurs. The system includes a full-stack React + Node.js interface with Flask APIs for ML inference.",
             "technologies": [
                 "Python",
                 "Flask",
@@ -219,12 +372,24 @@
                 "MongoDB",
                 "Express.js"
             ],
-            "github": "https://github.com/Kathir0478/smart-networking-engine"
+            "github": "https://github.com/Kathir0478/smart-networking-engine",
+            "image": "/projects/entrepeur-site.jpg",
+            "features": [
+                "Profile embedding generation",
+                "Semantic similarity scoring",
+                "Collaboration recommendations",
+                "Full-stack interface",
+                "Real-time ML inference"
+            ],
+            "challenges": "Balancing accuracy of recommendations with scalability and real-time performance",
+            "outcome": "Improved networking efficiency and meaningful business collaborations"
         },
         {
+            "id": 7,
             "title": "Recruitment Analytics Platform",
             "timeline": "7",
             "description": "Data-driven recruitment system automating candidate evaluation using AI and vector search.",
+            "detailed_description": "This system parses candidate resumes, generates embeddings, and uses Qdrant-based vector similarity search to score candidates against job requirements. Built with Python, Flask, and MongoDB, the platform exposes REST APIs for automated candidate evaluation and shortlisting. It enhances fairness, scalability, and efficiency in recruitment processes.",
             "technologies": [
                 "Python",
                 "Flask",
@@ -236,7 +401,17 @@
                 "MongoDB",
                 "Express.js"
             ],
-            "github": "https://github.com/Kathir0478/hiracle"
+            "github": "https://github.com/Kathir0478/hiracle",
+            "image": "/projects/hiracle.jpg",
+            "features": [
+                "Resume parsing",
+                "Vector similarity scoring",
+                "Automated candidate evaluation",
+                "REST API endpoints",
+                "Scalable deployment"
+            ],
+            "challenges": "Ensuring accurate matching and efficient vector search across large candidate datasets",
+            "outcome": "Streamlined recruitment process and improved shortlisting efficiency"
         }
     ]
 }
