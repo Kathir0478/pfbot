@@ -16,7 +16,8 @@ from dotenv import load_dotenv
 import os
 import json
 
-load_dotenv()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 log = logging.getLogger("pfbot")
 _log_level = getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper(), logging.INFO)
@@ -60,9 +61,25 @@ app.add_middleware(
 # --- Load fixed JSON at startup ---
 vectorstore = None
 qa_chain = None
-JSON_FILE = "profile.json"
+startup_failure: str | None = None
+JSON_FILE = os.path.join(BASE_DIR, "profile.json")
+_embed_override = os.getenv("GOOGLE_EMBEDDING_MODEL")
+# langchain-google-genai 2.x uses Generative Language v1beta embedContent; legacy
+# text-embedding / embedding-001 ids often 404 there. See package example: gemini-embedding-001.
+DEFAULT_EMBED_MODELS = [
+    "gemini-embedding-001",
+]
+EMBED_MODEL_CANDIDATES = (
+    [_embed_override] if _embed_override else DEFAULT_EMBED_MODELS
+)
+GROQ_CHAT_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
 try:
+    if not os.getenv("GOOGLE_API_KEY"):
+        raise ValueError("GOOGLE_API_KEY is not set (check .env next to app.py or the environment).")
+    if not os.getenv("GROQ_API_KEY"):
+        raise ValueError("GROQ_API_KEY is not set (check .env next to app.py or the environment).")
+
     with open(JSON_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -73,20 +90,32 @@ try:
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     chunks = splitter.create_documents([json_text])
 
-    # Embeddings
-    embedding = GoogleGenerativeAIEmbeddings(
-        model="gemini-embedding-001",
-        google_api_key=os.getenv("GOOGLE_API_KEY")
-    )
-
-    # Build vectorstore
-    vectorstore = FAISS.from_documents(chunks, embedding)
+    # Embeddings: try API-supported model ids (override list with GOOGLE_EMBEDDING_MODEL)
+    embedding = None
+    vectorstore = None
+    embed_model_used = None
+    last_embed_error: Exception | None = None
+    gkey = os.getenv("GOOGLE_API_KEY")
+    for model_name in EMBED_MODEL_CANDIDATES:
+        try:
+            embedding = GoogleGenerativeAIEmbeddings(
+                model=model_name,
+                google_api_key=gkey,
+            )
+            vectorstore = FAISS.from_documents(chunks, embedding)
+            embed_model_used = model_name
+            break
+        except Exception as ex:
+            last_embed_error = ex
+            log.warning("embedding init failed for model=%s: %s", model_name, ex)
+    if vectorstore is None or embedding is None:
+        raise last_embed_error or RuntimeError("No embedding model succeeded.")
 
     # LLM using Groq
     llm = ChatGroq(
-        model="llama-3.3-70b-versatile",
+        model=GROQ_CHAT_MODEL,
         temperature=0.3,
-        groq_api_key=os.getenv("GROQ_API_KEY")
+        groq_api_key=os.getenv("GROQ_API_KEY"),
     )
 
     # Retrieval QA chain
@@ -96,9 +125,16 @@ try:
         chain_type="stuff",
         verbose=True
     )
-    log.info("startup state=ready vectorstore=ok qa_chain=ok")
+    log.info(
+        "startup state=ready vectorstore=ok qa_chain=ok embedding_model=%s groq_model=%s",
+        embed_model_used,
+        GROQ_CHAT_MODEL,
+    )
 
 except Exception as e:
+    vectorstore = None
+    qa_chain = None
+    startup_failure = str(e)
     log.exception("startup state=rejected reason=init_failure: %s", e)
 
 TEMPLATE = """
@@ -138,10 +174,14 @@ def chat(request: ChatRequest):
     log.info("chat input question=%r", q)
 
     if qa_chain is None or vectorstore is None:
+        detail = "Vectorstore not initialized."
+        if startup_failure:
+            detail = f"{detail} Cause: {startup_failure[:800]}"
         log.warning(
-            "chat rejected state=vectorstore_uninitialized status_code=500 detail=Vectorstore not initialized."
+            "chat rejected state=vectorstore_uninitialized status_code=503 detail=%s",
+            detail[:500],
         )
-        raise HTTPException(status_code=500, detail="Vectorstore not initialized.")
+        raise HTTPException(status_code=503, detail=detail)
 
     try:
         formatted_prompt = prompt.format(question=request.question)
