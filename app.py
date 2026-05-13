@@ -1,5 +1,11 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+import logging
+import time
+
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
@@ -12,8 +18,44 @@ import json
 
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app)
+log = logging.getLogger("pfbot")
+_log_level = getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper(), logging.INFO)
+log.setLevel(_log_level)
+if not logging.getLogger().handlers and not log.handlers:
+    _h = logging.StreamHandler()
+    _h.setFormatter(
+        logging.Formatter("%(asctime)s %(levelname)s [%(name)s] %(message)s")
+    )
+    log.addHandler(_h)
+
+
+class AccessLogMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        t0 = time.perf_counter()
+        response = await call_next(request)
+        ms = (time.perf_counter() - t0) * 1000
+        log.info(
+            "http %s %s -> status=%s duration_ms=%.1f",
+            request.method,
+            request.url.path,
+            getattr(response, "status_code", "?"),
+            ms,
+        )
+        return response
+
+
+app = FastAPI()
+
+app.add_middleware(AccessLogMiddleware)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Load fixed JSON at startup ---
 vectorstore = None
@@ -54,9 +96,10 @@ try:
         chain_type="stuff",
         verbose=True
     )
+    log.info("startup state=ready vectorstore=ok qa_chain=ok")
 
 except Exception as e:
-    print("Error loading JSON or building vectorstore:", e)
+    log.exception("startup state=rejected reason=init_failure: %s", e)
 
 TEMPLATE = """
 You are a knowledgeable assistant representing Kathiravan's professional portfolio. 
@@ -74,28 +117,49 @@ Your response:
 
 prompt = PromptTemplate.from_template(TEMPLATE)
 
-# --- Chat Endpoint ---
-@app.route("/",methods=["GET"])
-def check():
-    return jsonify({"response":"Working"})
 
-@app.route("/chat", methods=["POST"])
-def chat():
+# Request model
+class ChatRequest(BaseModel):
+    question: str
+
+
+# --- Chat Endpoint ---
+@app.get("/")
+def check():
+    body = {"response": "Working"}
+    log.info("health input=GET / output=%s status_code=200", body)
+    return body
+
+
+@app.post("/chat")
+def chat(request: ChatRequest):
     global qa_chain, vectorstore
+    q = request.question.strip()
+    log.info("chat input question=%r", q)
+
     if qa_chain is None or vectorstore is None:
-        return jsonify({"error": "Vectorstore not initialized."}), 500
-    data = request.get_json()
-    question = data.get("question", "")
+        log.warning(
+            "chat rejected state=vectorstore_uninitialized status_code=500 detail=Vectorstore not initialized."
+        )
+        raise HTTPException(status_code=500, detail="Vectorstore not initialized.")
 
     try:
-        formatted_prompt = prompt.format(question=question)
+        formatted_prompt = prompt.format(question=request.question)
         result = qa_chain({"query": formatted_prompt})
-        return jsonify({"response": result["result"]})
+        text = result["result"]
+        log.info(
+            "chat output status_code=200 response_len=%d preview=%r",
+            len(text),
+            text[:500] + ("..." if len(text) > 500 else ""),
+        )
+        return {"response": text}
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        log.exception("chat rejected state=handler_error status_code=500 error=%s", e)
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))  # Render gives you PORT automatically
-    app.run(host="0.0.0.0", port=port, debug=False)
+    import uvicorn
+    port = int(os.getenv("PORT", 5000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
