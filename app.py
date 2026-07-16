@@ -141,7 +141,7 @@ DEFAULT_EMBED_MODELS = [
 EMBED_MODEL_CANDIDATES = (
     [_embed_override] if _embed_override else DEFAULT_EMBED_MODELS
 )
-GROQ_CHAT_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_CHAT_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 # auto: try Google first if GOOGLE_API_KEY set, then Hugging Face if token set (fixes
 # Google "User location is not supported" on hosts like Render in some regions).
 EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", "auto").strip().lower()
